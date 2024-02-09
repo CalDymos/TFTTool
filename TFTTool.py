@@ -460,9 +460,9 @@ class TFTFile:
             "ressource_files_size":                 {"struct": "I", "val": 0},
             "ressource_files_crc":                  {"struct": "I", "val": 0},
             "unknown_memory_fs_size":               {"struct": "I", "val": 0},
-            "unknown_next_file_address":            {"struct": "I", "val": 0},
-            "unknown_file_id":                      {"struct": "I", "val": 0},
-            "unknown_metadata_size":                {"struct": "I", "val": 0},
+            "unknown_next_file_address":            {"struct": "I", "val": 0}, # uint.max => 4294967295
+            "unknown_file_id":                      {"struct": "I", "val": 0}, # unit.max => 4294967295
+            "unknown_metadata_size":                {"struct": "I", "val": 0}, 
         },
     }
     _fileHeader2 = {
@@ -471,8 +471,8 @@ class TFTFile:
         "hasCRC":  True,
         "content": {
             "static_usercode_address":      {"struct": "I", "val": 0},
-#            "unknown_app_vas_address":      {"struct": "I", "val": 0},
-#            "unknown_app_vas_count":        {"struct": "I", "val": 0},
+            "unknown_app_vas_address":      {"struct": "I", "val": 0},
+            "unknown_app_vas_count":        {"struct": "I", "val": 0},
             "app_attributes_data_address":  {"struct": "I", "val": 0},
             "ressources_files_address":     {"struct": "I", "val": 0},
             "usercode_address":             {"struct": "I", "val": 0},
@@ -492,7 +492,10 @@ class TFTFile:
             "audios_count":                 {"struct": "H", "val": 0},
             "fonts_count":                  {"struct": "H", "val": 0},
             "unknown_res1":                 {"struct": "H", "val": 0},
-            "unknown_encode":               {"struct": "B", "val": 0},
+            "char_encode":                  {"struct": "B", "val": 0}, # 0= null , 1 = ascii, 2 = gb2312 , 3 = iso-8859-1, 4 = iso-8859-2, 5 = iso-8859-3, 6 = iso-8859-4, 7 = iso-8859-5
+                                                                       # 8 = iso-8859-6, 9 = iso-8859-7, 10 = iso-8859-8, 11 = iso-8859-9, 12 = iso-8859-13, 13 = iso-8859-15, 14 = iso-8859-11
+                                                                       # 15 = ks_c_5601-1987, 16 = big5, 17 = windows-1255, 18 = windows-1256, 19 = windows-1257, 20 = windows-1258, 21 = windows-874
+                                                                       # 22 = koi8-r, 23 = shift-jis, 24 = utf-8
             "unknown_res2":                 {"struct": "B", "val": 0},
             "unknown_res3":                 {"struct": "H", "val": 0},
         },
